@@ -1,0 +1,18 @@
+import express from "express";
+import { getUserById, register, login, forgotPassword, resetPassword, changePassword } from "../controllers/auth.js";
+
+const router = express.Router();
+
+router.route("/get-user/:userId").get(getUserById);
+
+router.route("/register").post(register);
+
+router.route("/login").post(login);
+
+router.route("/forgot-password").post(forgotPassword);
+
+router.route("/reset-password/:resetToken").put(resetPassword);
+
+router.route("/change-password").put(changePassword);
+
+export { router as AuthRouter };
