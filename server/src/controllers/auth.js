@@ -4,7 +4,9 @@ import crypto from "crypto";
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
-  res.status(statusCode).json({ userId: user._id, sucess: true, token, user:user });
+  res
+    .status(statusCode)
+    .json({ userId: user._id, sucess: true, token, user: user });
 };
 
 export const getUserById = async (req, res, next) => {
@@ -159,11 +161,10 @@ export const resetPassword = async (req, res, next) => {
 };
 
 export const changePassword = async (req, res, next) => {
-
-  const {userId, oldPassword, newPassword } = req.body; 
+  const { userId, oldPassword, newPassword } = req.body;
 
   try {
-    const user = await UserModel.findOne({"_id" : userId}).select("+password");
+    const user = await UserModel.findOne({ _id: userId }).select("+password");
 
     if (!user) {
       res.status(400).json({ success: false, error: "User does not exist" });

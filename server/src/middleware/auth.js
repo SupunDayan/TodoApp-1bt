@@ -12,7 +12,6 @@ export const authorize = async (req, res, next) => {
   }
 
   if (!token) {
-    // return next(new ErrorResponse("Not authorized to access this route", 401));
     res
       .status(401)
       .json({ success: false, error: "Not authorized to access this route" });
@@ -24,7 +23,6 @@ export const authorize = async (req, res, next) => {
     const user = await UserModel.findById(decoded.id);
 
     if (!user) {
-      //   return next(new ErrorResponse("No user found with this id", 404));
       res
         .status(404)
         .json({ success: false, error: "No user found with this id" });
@@ -34,7 +32,6 @@ export const authorize = async (req, res, next) => {
 
     next();
   } catch (err) {
-    // return next(new ErrorResponse("Not authorized to access this router", 401));
     res
       .status(401)
       .json({ success: false, error: "Not authorized to access this router" });
