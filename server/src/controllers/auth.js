@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
-  res.status(statusCode).json({ sucess: true, token });
+  res.status(statusCode).json({ userId: user._id, sucess: true, token });
 };
 
 export const getUserById = async (req, res, next) => {
@@ -87,7 +87,7 @@ export const forgotPassword = async (req, res, next) => {
     await user.save();
 
     // Create reset url to email to provided email
-    const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
+    const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
 
     // HTML Message
     const message = `

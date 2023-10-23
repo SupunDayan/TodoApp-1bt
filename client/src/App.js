@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
-function App() {
+// import PrivateRoute from './utils/PrivateRoute.js';
+import {Login} from './pages/Login';
+import {Register} from './pages/Register';
+import {Dashboard} from './pages/Dashboard';
+import {Home} from './pages/Home';
+import {ForgotPassword} from './pages/ForgotPassword';
+import {ResetPassword} from './pages/ResetPassword';
+import { AddTask } from './components/AddTask';
+import { UpdateTask } from './components/UpdateTask';
+
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home /> }/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />}/>
+          <Route path="/reset-password/:resetToken" element={<ResetPassword />}/>
+          <Route path="/task/create" element={<AddTask />}/>
+          <Route path="/task/update" element={<UpdateTask />}/>
+        </Routes>
+      </Router>
     </div>
   );
 }

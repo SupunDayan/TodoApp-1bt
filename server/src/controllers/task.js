@@ -20,9 +20,10 @@ export const createTask = async (req, res, next) => {
     try{
         const task = new TaskModel(req.body);
         await task.save();
-        res.json(task);    
+        res.json({success:true, task});    
     }catch(err){
         console.error(err);
+        res.json({success:false,"error":err});
     } 
 }
 
@@ -41,7 +42,7 @@ export const updateTask = async (req, res, next) => {
         task.task = req.body.task;
         task.dueDateTime = req.body.dueDateTime;
         await task.save();
-        res.json(task);
+        res.json({success: true,task});
     }catch(err){
         console.error(err);
     } 
