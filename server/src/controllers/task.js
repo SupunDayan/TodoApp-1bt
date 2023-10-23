@@ -7,7 +7,7 @@ export const getAllTasksByUserId = async (req, res, next) => {
         const userTasks = await TaskModel.find({
           taskOwner: { $in: user._id},
         });
-        res.json({ userTasks });
+        res.json(userTasks);
       } catch (err) {
         res.json(err);
       }
@@ -20,7 +20,7 @@ export const createTask = async (req, res, next) => {
     try{
         const task = new TaskModel(req.body);
         await task.save();
-        res.json({success:true, task});    
+        res.json(task);    
     }catch(err){
         console.error(err);
         res.json({success:false,"error":err});
@@ -42,7 +42,7 @@ export const updateTask = async (req, res, next) => {
         task.task = req.body.task;
         task.dueDateTime = req.body.dueDateTime;
         await task.save();
-        res.json({success: true,task});
+        res.json(task);
     }catch(err){
         console.error(err);
     } 

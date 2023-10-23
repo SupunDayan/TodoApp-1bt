@@ -4,7 +4,7 @@ import crypto from "crypto";
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
-  res.status(statusCode).json({ userId: user._id, sucess: true, token });
+  res.status(statusCode).json({ userId: user._id, sucess: true, token, user:user });
 };
 
 export const getUserById = async (req, res, next) => {

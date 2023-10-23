@@ -17,28 +17,28 @@
     margin-top: 1rem;
   }
   
-  nav {
+  .login-nav {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
   }
-  nav h3 {
+  .login-nav h3 {
     margin: 1rem;
     cursor: pointer;
     color: #718096;
   }
-  nav h3:hover {
+  .login-nav h3:hover {
     color: white;
   }
   
-  form {
+  .login-form {
     width: 95%;
     max-width: 400px;
     margin: 0 auto;
   }
   
-  form label {
+  .login-form label {
     font-size: 1rem;
     font-weight: bold;
     display: block;
@@ -46,8 +46,8 @@
     margin: 1rem 0 0.2rem;
   }
   
-  input,
-  select {
+  .login-input,
+  .login-select {
     width: 100%;
     padding: 0.65rem 0.5rem;
     font-size: 1rem;
@@ -58,17 +58,17 @@
     outline: none;
   }
   
-  input:focus,
-  select:focus {
+  .login-input:focus,
+  .login-select:focus {
     border-color: #4299e1;
   }
   
-  input::placeholder,
+  .login-input::placeholder,
   select::placeholder {
     color: #a0aec0;
   }
   
-  input[type="checkbox"] {
+  .login-input[type="checkbox"] {
     width: fit-content;
     margin-right: 0.5rem;
     transform: scale(1.25);
@@ -88,12 +88,12 @@
     cursor: pointer;
   }
   
-  input.input-error,
-  select.input-error {
+  .login-input.input-error,
+  .login-select.input-error {
     border-color: #fc8181;
   }
   
-  button:disabled {
+  .login-button:disabled {
     opacity: 0.35;
   }
   
