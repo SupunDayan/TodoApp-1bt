@@ -1,4 +1,4 @@
-import "../pages/Login.css";
+import "../pages/Form.css";
 import { useFormik } from "formik";
 import { loginFormSchema } from "../schemas/loginFormSchema";
 // import { useState } from "react";
@@ -38,6 +38,7 @@ export const Login = () => {
     
             localStorage.setItem("authToken", data.token);
             localStorage.setItem("userId", data.userId);
+            localStorage.setItem("userName", data.user.username);
             navigate("/");
         } catch (error) {
             // setError(error.response.data.error);
@@ -75,7 +76,8 @@ export const Login = () => {
 
 
     return (
-        <div className="login">
+        <div className="formComponent">
+        <div className="loginCard">
         <h1> Login </h1>
         <form onSubmit={handleSubmit} autoComplete="off">
             <label htmlFor="email">Email</label>
@@ -106,21 +108,20 @@ export const Login = () => {
             {errors.password && touched.password && (
             <p className="error">{errors.password}</p>
             )}
-
-            <button className="register-button" disabled={isSubmitting} type="submit">
+            <div className="forget-password__subtext">
+            <span>
+            <Link className="link" to="/forgot-password">Forgot Password?</Link>
+            </span>
+            </div>
+            <button className="submit-button" disabled={isSubmitting} type="submit">
             Submit
             </button>
 
             <span className="login-screen__subtext">
-            Don't have an account? <Link to="/register">Register</Link>
-            </span>
-
-            <span className="login-screen__subtext">
-            <Link to="/forgot-password">Forgot Password?</Link>
-            </span>
-
-            
+            Don't have an account? <Link className="link" to="/register">Register</Link>
+            </span>  
         </form>
+        </div>
         </div>
     );
 };

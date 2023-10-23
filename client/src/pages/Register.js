@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { registerFormSchema } from "../schemas/registerFormSchema";
-import '../pages/Register.css';
+import "../pages/Form.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -53,6 +53,7 @@ export const Register = () => {
         
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("userId", data.userId);
+                localStorage.setItem("userName", data.user.username);
                 navigate("/");
 
             } catch (error) {
@@ -90,7 +91,8 @@ export const Register = () => {
 
 
     return (
-        <div className="register">
+        <div className="formComponent">
+        <div className="registerCard">
         <h1> Register </h1>
         <form onSubmit={handleSubmit} autoComplete="off">
         
@@ -153,15 +155,15 @@ export const Register = () => {
         )}
 
 
-        <button className="register-button" disabled={isSubmitting} type="submit">
+        <button className="submit-button" disabled={isSubmitting} type="submit">
             Submit
         </button>
 
         <span className="register-screen__subtext">
-            Already have an account? <Link to="/login">Login</Link>
+            Already have an account? <Link to="/login" className="linkSub">Login</Link>
             </span>
         </form>
-
+        </div>
         </div>
     );
 };

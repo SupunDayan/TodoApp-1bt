@@ -1,4 +1,4 @@
-import "../pages/ResetPassword.css";
+import "../pages/Form.css";
 import { useFormik } from "formik";
 import { resetPasswordFormSchema } from "../schemas/resetPasswordFormSchema";
 // import { Link } from "react-router-dom";
@@ -69,7 +69,8 @@ export const ResetPassword = () => {
 
 
     return (
-        <div className="resetPassword">
+        <div className="formComponent">
+        <div className="resetPasswordCard">
         <h1> Reset Password </h1>
         <form onSubmit={handleSubmit} autoComplete="off">
         <label htmlFor="password">Password</label>
@@ -104,11 +105,12 @@ export const ResetPassword = () => {
         {errors.confirmPassword && touched.confirmPassword && (
             <p className="error">{errors.confirmPassword}</p>
         )}
-            <button className="resetPassword-button" disabled={isSubmitting} type="submit">
+            <button className="submit-button" disabled={isSubmitting} type="submit">
             Reset Password
             </button>
             
         </form>
+        </div>
         </div>
     );
 };

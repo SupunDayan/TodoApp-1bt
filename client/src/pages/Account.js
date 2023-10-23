@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useGetUserId } from "../hooks/useGetUserId";
+import { Navbar } from "../components/Navbar";
+import { useGetUserName } from "../hooks/useGetUserName";
 
 
 export const Account = () => {
@@ -14,11 +16,8 @@ export const Account = () => {
 
   const navigate = useNavigate();
   const userId = useGetUserId();
+  const userName = useGetUserName();
 
-  const logoutHandler = () =>{
-    localStorage.removeItem("authToken");
-    navigate("/login")
-};
  useEffect(() => {
 
     const getUserById = async ()=> {
@@ -50,10 +49,10 @@ export const Account = () => {
   }
 
   return (
-    <div className="Dashboard">
-      <h1>Welcome, Supun</h1>
+    <><Navbar/>
+    <div className="Account"> 
+      <h1>Welcome, {userName}</h1>
       <h4>Your Details</h4>
-      <button onClick={logoutHandler}>logout</button>
       
       <div className="tasks">
         
@@ -78,13 +77,13 @@ export const Account = () => {
       </div>
 
       <div 
-        className="addPopup" 
+        className="addPopupAccount" 
         onClick={() => setPopupActive(true)}
-        >Change Password</div>
+      ><button>Change Password</button></div>
 
       {popupActive ? (
-        <div className="popup">
-          <div className="closePopup" 
+        <div className="popupAccount">
+          <div className="closePopupAccount" 
             onClick={()=> closePopup()}
             >x</div>
           <div className="content">
@@ -115,5 +114,6 @@ export const Account = () => {
       ): ""}
 
     </div>
+    </>
   );
 }

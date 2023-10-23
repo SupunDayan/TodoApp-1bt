@@ -1,0 +1,156 @@
+/* .App {
+  text-align: center;
+  padding: 5rem 1rem;
+} */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.formComponent {
+  background: #202B3E;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 600px; 
+}
+
+.loginCard{
+  background: #1a202c;
+  width: 400px;
+  height: 400px;
+  color: #f3f3f3;
+  position:relative;
+  margin: auto;
+  top: 10px;
+  padding:10px;
+  border-radius: 8px;  
+}
+
+.registerCard{
+  background: #1a202c;
+  width: 400px;
+  height: 95%;
+  color: #f3f3f3;
+  position:relative;
+  margin: auto;
+  top: 10px;
+  padding:10px;
+  border-radius: 8px;  
+}
+
+.forgetPasswordCard{
+  background: #1a202c;
+  width: 400px;
+  height: 300px;
+  color: #f3f3f3;
+  position:relative;
+  margin: auto;
+  top: 10px;
+  padding:10px;
+  border-radius: 8px;  
+}
+
+.resetPasswordCard{
+  background: #1a202c;
+  width: 400px;
+  height: 300px;
+  color: #f3f3f3;
+  position:relative;
+  margin: auto;
+  top: 10px;
+  padding: 10px;
+  border-radius: 8px;  
+}
+
+.formComponent.error {
+  color: #fc8181;
+  font-size: 0.75rem;
+  text-align: left;
+  margin-top: 0.25rem;
+  margin: 1rem 0.3rem 0.2rem;
+}
+
+.formComponent label {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  text-align: left;
+  margin: 1rem 0.2rem 0.2rem;
+}
+
+.formComponent input,
+select {
+  width: 100%;
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  color: white;
+  border: 2px solid #4a5568;
+  background-color: #2d3748;
+  border-radius: 10px;
+  outline: none;
+}
+
+.formComponent input:focus,
+select:focus {
+  border-color: #4299e1;
+}
+
+.formComponent input::placeholder,
+select::placeholder {
+  color: #a0aec0;
+}
+
+.submit-button {
+  display: block;
+  margin: 1rem 0;
+  padding: 0.35rem 0.5rem;
+  background-color: #4299e1;
+  color: #1a202c;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.formComponent input.input-error,
+.formComponent select.input-error {
+  border-color: #fc8181;
+}
+
+.formComponent button:disabled {
+  opacity: 0.35;
+}
+
+.formComponent h1{
+  text-align: center;
+  font-size: 30px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.forget-password__subtext{
+  align-items: end;
+}
+
+.link{
+  color: #8c6180;
+}
+
+.forget-password__subtext{
+  text-align: right;
+  margin-top: 5px;
+}
+
+.formComponent span{
+  margin: 0 0.3rem;
+}

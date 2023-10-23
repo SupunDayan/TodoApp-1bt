@@ -1,4 +1,4 @@
-import "../pages/ForgotPassword.css";
+import "../pages/Form.css";
 import { useFormik } from "formik";
 import { forgotPasswordFormSchema } from "../schemas/forgotPasswordFormSchema";
 // import { useState } from "react"
@@ -59,12 +59,13 @@ export const ForgotPassword = () => {
 
 
     return (
-        <div className="forgotPassword">
+        <div className="formComponent">
+        <div className="forgetPasswordCard">
         <h1> Forgot Password </h1>
         <form onSubmit={handleSubmit} autoComplete="off">
             <p className="forgotpassword-screen__subtext">
-                Please enter the email address you register your account with. We
-                will send you reset password confirmation to this email
+                Please enter the email address you register your account with. We will 
+                send you reset password confirmation to this email
             </p>
             <label htmlFor="email">Email</label>
             <input
@@ -80,11 +81,12 @@ export const ForgotPassword = () => {
             <p className="error">{errors.email}</p>
             )}
 
-            <button className="forgotPassword-button" disabled={isSubmitting} type="submit">
+            <button className="submit-button" disabled={isSubmitting} type="submit">
             Send Email
             </button>
             
         </form>
+        </div>
         </div>
     );
 };

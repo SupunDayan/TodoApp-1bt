@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useGetUserId } from "../hooks/useGetUserId";
+import { useGetUserName } from "../hooks/useGetUserName";
+import { Navbar } from "../components/Navbar";
 
 
 export const Dashboard = () => {
@@ -16,9 +18,11 @@ export const Dashboard = () => {
   const [sortedTasks, setSortedData] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
   const [highlightTodayTasks, setHighlightTodayTasks] = useState(false);
+  
 
   const navigate = useNavigate();
   const userId = useGetUserId();
+  const userName = useGetUserName();
 
   const isDueDateToday = (dueDateTime) => {
     const today = new Date();
@@ -47,16 +51,9 @@ export const Dashboard = () => {
   }, [userId]);
   
 
-  
-
-  const logoutHandler = () =>{
-    localStorage.removeItem("authToken");
-    navigate("/login")
-};
-
 const sortTasksByDate= (tasks) => {
     // Sort the data by the Date field in ascending order
-    return tasks.sort((a, b) => new Date(b.dueDateTime) - new Date(a.dueDateTime));
+    return tasks.sort((a, b) => new Date(a.dueDateTime) - new Date(b.dueDateTime));
   }
 
   const sortHandler= () =>{
@@ -108,7 +105,7 @@ const sortTasksByDate= (tasks) => {
   // }
 
   const deleteTask = async (taskId) => {
-    const response = await axios.delete(`http://localhost:3001/tasks/delete/${taskId}`);
+    const response = await axios.delete(`http://localhost:3001/task/delete/${taskId}`);
     setTasks(tasks => tasks.filter(task => task._id !== response.data._id));  
   }
 
@@ -150,11 +147,12 @@ const sortTasksByDate= (tasks) => {
 
   return (
     <div className="Dashboard">
-      <h1>Welcome, Supun</h1>
+      <h1>Welcome, {userName}</h1>
       {tasks.length > 0 ? <h4>Your Tasks</h4> : <h4>You have no Tasks</h4>}
-      <button onClick={logoutHandler}>logout</button>
+      <div className="button-container">
       <button onClick={sortHandler} disabled={isSorting}>Sort</button>
       <button onClick={highlightTodayTasksHandler}>{highlightTodayTasks ? 'Show All Tasks' : 'Show Today\'s Tasks'}</button>
+      </div>
       <div className="tasks">
         {isSorting? sortedTasks.map((task) => (
           <div 
@@ -163,7 +161,9 @@ const sortTasksByDate= (tasks) => {
             >
             
               <div className="box">
-                <div id = "task" className="task">{task.task}<div>{task.dueDateTime}</div></div>
+              <div id = "task" className="task">{task.task}</div>
+              <div id = "task" className="task">{new Date(task.dueDateTime).toLocaleDateString()}</div>
+              <div id = "task" className="task">{new Date(task.dueDateTime).toLocaleTimeString()}</div>
               </div>
             <div className="controls">                  
               <div 
@@ -183,7 +183,10 @@ const sortTasksByDate= (tasks) => {
             >
             
               <div className="box">
-                <div id = "task" className="task">{task.task}<div>{task.dueDateTime}</div></div>
+                <div id = "task" className="task">{task.task}</div>
+                <div id = "task" className="task">{new Date(task.dueDateTime).toLocaleDateString()}</div>
+              <div id = "task" className="task">{new Date(task.dueDateTime).toLocaleTimeString()}</div>
+                
               </div>
             <div className="controls">                  
               <div 
@@ -240,60 +243,9 @@ const sortTasksByDate= (tasks) => {
         </div>
       ): ""}
 
-      {/* {popupActive ? (
-        <div className="popup">
-          <div className="closePopup" 
-            onClick={() => setPopupActive(false)}
-            >x</div>
-          <div className="content">
-            <h3>Add Task</h3>
-            <input 
-              type="task" 
-              className="add-task-input"
-              onChange={(event) => setNewTodo(event.target.value)}
-              value = {newTodo}
-              />
-              <div className="button" onClick={addTask}>Create Task</div>
-          </div>
-        </div>
-      ): ""}
-      
-      {updatePopupActive ? (
-        <div className="popup">
-          <div className="closePopup" 
-            onClick={() => setUpdatePopupActive(false)}
-            >x</div>
-          <div className="content">
-            <h3>Update Task</h3>
-            <input 
-              type="task" 
-              className="add-task-input"
-              value = {task}
-              onChange={(event) => setTask(event.target.value)}
-              />
-              <div className="button" onClick={() =>updateTask(taskId)}>Update Task</div>
-          </div>
-        </div>
-      ): ""} */}
     </div>
+
   );
 }
 
-
-// export const Dashboard = () => {
-
-// const navigate = useNavigate();
-
-// const logoutHandler = () =>{
-//     localStorage.removeItem("authToken");
-//     navigate("/login")
-// };
-
-//   return (
-//     <div>
-//       Dashboard
-//       <button onClick={logoutHandler}>logout</button>
-//     </div>
-//   )
-// }
 

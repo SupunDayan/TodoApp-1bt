@@ -1,0 +1,39 @@
+.navbar {
+    margin: 0;
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none; 
+  }
+
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin-right: 20px; /* Add some space between links */
+  }
+  
+  /* Hover effect for links */
+  .navbar a:hover {
+    color: #202B3E; /* Change color on hover */
+    text-decoration: underline; /* Underline on hover */
+  }
+
+  .navbar button {
+    background-color: #D81E5B; /* Button background color */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding around the text */
+    border: none; /* Remove the button border */
+    border-radius: 4px; /* Add rounded corners */
+    font-size: 16px; /* Adjust the font size as needed */
+    cursor: pointer; /* Change cursor to a pointer on hover */
+  }
+  
+  /* Hover effect for the button */
+  .navbar button:hover {
+    background-color: #8A4EFC; /* Change background color on hover */
+  }

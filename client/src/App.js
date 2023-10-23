@@ -10,6 +10,7 @@ import {ForgotPassword} from './pages/ForgotPassword';
 import {ResetPassword} from './pages/ResetPassword';
 import { AddTask } from './components/AddTask';
 import { UpdateTask } from './components/UpdateTask';
+import { Navbar } from './components/Navbar';
 
 
 const App = () => {
