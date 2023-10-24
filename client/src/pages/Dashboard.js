@@ -1,11 +1,8 @@
 import "../pages/Dashboard.css";
-import format from "date-fns/format";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGetUserId } from "../hooks/useGetUserId";
 import { useGetUserName } from "../hooks/useGetUserName";
-import { Navbar } from "../components/Navbar";
 
 export const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -18,7 +15,6 @@ export const Dashboard = () => {
   const [isSorting, setIsSorting] = useState(false);
   const [highlightTodayTasks, setHighlightTodayTasks] = useState(false);
 
-  const navigate = useNavigate();
   const userId = useGetUserId();
   const userName = useGetUserName();
 
@@ -41,7 +37,6 @@ export const Dashboard = () => {
           isToday: isDueDateToday(task.dueDateTime),
         }));
         setTasks(tasksWithIsToday);
-        console.log(tasks);
       } catch (err) {
         console.error(err);
       }

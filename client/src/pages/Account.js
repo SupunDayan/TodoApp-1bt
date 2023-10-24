@@ -1,5 +1,4 @@
 import "../pages/Account.css";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGetUserId } from "../hooks/useGetUserId";
@@ -12,7 +11,6 @@ export const Account = () => {
   const [newPassword, setNewPassword] = useState();
   const [user, setUser] = useState({});
 
-  const navigate = useNavigate();
   const userId = useGetUserId();
   const userName = useGetUserName();
 
@@ -37,6 +35,7 @@ export const Account = () => {
         { userId: userId, oldPassword: oldPassword, newPassword: newPassword },
         { headers: { "Content-Type": "application/json" } }
       );
+      alert(response.data.data);
       setPopupActive(false);
     } catch (err) {
       console.error(err);
