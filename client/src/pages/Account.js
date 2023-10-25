@@ -29,7 +29,6 @@ export const Account = () => {
   }, [userId]);
 
   const changePassword = async () => {
-
     try {
       const response = await axios.put(
         "http://localhost:3001/auth/change-password",
@@ -40,7 +39,6 @@ export const Account = () => {
       setPopupActive(false);
       setOldPassword("");
       setNewPassword("");
-      
     } catch (err) {
       console.error(err);
     }
@@ -99,31 +97,30 @@ export const Account = () => {
             <div className="content">
               <h3>Change Password</h3>
               <form className="changePasswordForm">
-              <input
-                type="password"
-                className="add-password-input"
-                id="oldPassword"
-                name="oldPassword"
-                placeholder="Old Password"
-                value={oldPassword}
-                onChange={(event) => setOldPassword(event.target.value)}
-                autoComplete="on"
-              />
+                <input
+                  type="password"
+                  className="add-password-input"
+                  id="oldPassword"
+                  name="oldPassword"
+                  placeholder="Old Password"
+                  value={oldPassword}
+                  onChange={(event) => setOldPassword(event.target.value)}
+                  autoComplete="on"
+                />
 
-              <div style={{ padding: "20px" }}></div>
-              <input
-                type="password"
-                className="add-password-input"
-                id="newPassword"
-                name="newPassword"
-                placeholder="New Password"
-                value={newPassword}
-                onChange={(event) => setNewPassword(event.target.value)}
-                autoComplete="on"
-              />
-              </form> 
+                <div style={{ padding: "20px" }}></div>
+                <input
+                  type="password"
+                  className="add-password-input"
+                  id="newPassword"
+                  name="newPassword"
+                  placeholder="New Password"
+                  value={newPassword}
+                  onChange={(event) => setNewPassword(event.target.value)}
+                  autoComplete="on"
+                />
+              </form>
               <div className="button" onClick={changePassword}>
-              
                 Change
               </div>
             </div>

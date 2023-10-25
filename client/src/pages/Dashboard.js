@@ -199,7 +199,7 @@ export const Dashboard = () => {
                     {new Date(task.dueDateTime).toLocaleTimeString()}
                   </div>
                 </div>
-                
+
                 <div className="controls  grid-item">
                   <div
                     className="update-task"
