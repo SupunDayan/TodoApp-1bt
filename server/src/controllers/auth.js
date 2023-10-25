@@ -11,7 +11,9 @@ const sendToken = (user, statusCode, res) => {
 
 export const getUserById = async (req, res, next) => {
   try {
-    const user = await UserModel.findById(req.params.userId).select("+password");
+    const user = await UserModel.findById(req.params.userId).select(
+      "+password"
+    );
     res.json(user);
   } catch (err) {
     return res.json(err);
@@ -157,7 +159,6 @@ export const resetPassword = async (req, res, next) => {
   } catch (error) {
     // next(err);
     return res.status(500).json({ success: false, error: error.message });
-    
   }
 };
 
@@ -168,7 +169,9 @@ export const changePassword = async (req, res, next) => {
     const user = await UserModel.findOne({ _id: userId }).select("+password");
 
     if (!user) {
-      return res.status(400).json({ success: false, error: "User does not exist" });
+      return res
+        .status(400)
+        .json({ success: false, error: "User does not exist" });
       //   return next(new ErrorResponse("Invalid Token", 400));
     }
 

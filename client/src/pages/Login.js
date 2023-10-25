@@ -38,11 +38,6 @@ export const Login = () => {
     } catch (error) {
       alert(error.response.data.error);
     }
-    console.log("Submitted");
-    console.log(values);
-    console.log(actions);
-    console.log(email);
-    console.log(password);
 
     actions.resetForm();
   };

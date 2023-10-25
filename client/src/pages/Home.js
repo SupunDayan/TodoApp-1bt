@@ -1,4 +1,3 @@
-// import React from 'react';
 import { Dashboard } from "./Dashboard";
 import { Navigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
