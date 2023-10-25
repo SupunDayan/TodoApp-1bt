@@ -7,6 +7,7 @@ export const Navbar = () => {
   const logout = () => {
     window.localStorage.removeItem("authToken");
     window.localStorage.removeItem("userId");
+    window.localStorage.removeItem("userName");
     navigate("/");
   };
   return (

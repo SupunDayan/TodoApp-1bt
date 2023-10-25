@@ -14,7 +14,7 @@ export const getUserById = async (req, res, next) => {
     const user = await UserModel.findById(req.params.userId);
     res.json(user);
   } catch (err) {
-    res.json(err);
+    return res.json(err);
   }
 };
 
@@ -24,22 +24,22 @@ export const register = async (req, res, next) => {
   const userExist = await UserModel.findOne({ email });
 
   if (userExist) {
-    res.json({ message: "User already exist!" });
+    return res.json({ message: "User already exist!" });
   }
 
   try {
     const user = await UserModel.create({ username, email, password });
     sendToken(user, 201, res);
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 };
 
-export const login = async (req, res, next) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
       error: "Enter email and password properly",
     });
@@ -49,7 +49,7 @@ export const login = async (req, res, next) => {
     const user = await UserModel.findOne({ email }).select("+password");
 
     if (!user) {
-      res.status(404).json({
+      return res.status(401).json({
         success: false,
         error: "Wrong credentials or User doesn't exist",
       });
@@ -58,14 +58,14 @@ export const login = async (req, res, next) => {
     const isPasswordMatched = await user.comparePassword(password);
 
     if (!isPasswordMatched) {
-      res.status(404).json({
+      return res.status(401).json({
         success: false,
         error: "Wrong credentials or User doesn't exist",
       });
     }
     sendToken(user, 200, res);
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 };
 
@@ -78,9 +78,9 @@ export const forgotPassword = async (req, res, next) => {
 
     if (!user) {
       //   return next(new ErrorResponse("No email could not be sent", 404));
-      res
+      return res
         .status(404)
-        .json({ success: false, error: "No email could not be sent" });
+        .json({ success: false, error: "Email couldn't be sent" });
     }
 
     // Reset Token Gen and add to database hashed (private) version of token
@@ -99,7 +99,7 @@ export const forgotPassword = async (req, res, next) => {
     `;
 
     try {
-      await sendEmail({
+      sendEmail({
         to: user.email,
         subject: "Password Reset Request",
         text: message,
@@ -115,13 +115,13 @@ export const forgotPassword = async (req, res, next) => {
       await user.save();
 
       //   return next(new ErrorResponse("Email could not be sent", 500));
-      res
+      return res
         .status(500)
         .json({ success: false, error: "Email could not be sent" });
     }
   } catch (err) {
     // next(err);
-    res.status(500).json({ success: false, error: err.message });
+    return res.status(500).json({ success: false, error: err.message });
   }
 };
 
@@ -139,7 +139,7 @@ export const resetPassword = async (req, res, next) => {
     });
 
     if (!user) {
-      res.status(400).json({ success: false, error: "Invalid Token" });
+      return res.status(400).json({ success: false, error: "Invalid Token" });
       //   return next(new ErrorResponse("Invalid Token", 400));
     }
 
@@ -156,7 +156,8 @@ export const resetPassword = async (req, res, next) => {
     });
   } catch (error) {
     // next(err);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
+    
   }
 };
 
@@ -167,14 +168,14 @@ export const changePassword = async (req, res, next) => {
     const user = await UserModel.findOne({ _id: userId }).select("+password");
 
     if (!user) {
-      res.status(400).json({ success: false, error: "User does not exist" });
+      return res.status(400).json({ success: false, error: "User does not exist" });
       //   return next(new ErrorResponse("Invalid Token", 400));
     }
 
     const isPasswordMatched = await user.comparePassword(oldPassword);
 
     if (!isPasswordMatched) {
-      res.status(401).json({
+      return res.status(401).json({
         success: false,
         error: "Enter old password and new password correctly!",
       });
@@ -189,6 +190,6 @@ export const changePassword = async (req, res, next) => {
     });
   } catch (error) {
     // next(err);
-    res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message });
   }
 };
