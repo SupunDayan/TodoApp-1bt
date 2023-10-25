@@ -11,7 +11,7 @@ const sendToken = (user, statusCode, res) => {
 
 export const getUserById = async (req, res, next) => {
   try {
-    const user = await UserModel.findById(req.params.userId);
+    const user = await UserModel.findById(req.params.userId).select("+password");
     res.json(user);
   } catch (err) {
     return res.json(err);
@@ -175,9 +175,9 @@ export const changePassword = async (req, res, next) => {
     const isPasswordMatched = await user.comparePassword(oldPassword);
 
     if (!isPasswordMatched) {
-      return res.status(401).json({
+      return res.json({
         success: false,
-        error: "Enter old password and new password correctly!",
+        message: "Enter old password and new password correctly!",
       });
     }
 
@@ -186,7 +186,7 @@ export const changePassword = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      data: "Password Changed Successfully!",
+      message: "Password Changed Successfully!",
     });
   } catch (error) {
     // next(err);

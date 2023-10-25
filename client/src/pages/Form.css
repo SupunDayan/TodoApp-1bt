@@ -67,12 +67,12 @@
   border-radius: 8px;  
 }
 
-.formComponent.error {
+.error {
   color: #fc8181;
   font-size: 0.75rem;
   text-align: left;
-  margin-top: 0.25rem;
-  margin: 1rem 0.3rem 0.2rem;
+  /* margin-top: 0.25rem; */
+  margin: 0.2rem 0.3rem 0.2rem;
 }
 
 .formComponent label {

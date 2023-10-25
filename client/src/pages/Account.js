@@ -7,8 +7,8 @@ import { useGetUserName } from "../hooks/useGetUserName";
 
 export const Account = () => {
   const [popupActive, setPopupActive] = useState(false);
-  const [oldPassword, setOldPassword] = useState();
-  const [newPassword, setNewPassword] = useState();
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [user, setUser] = useState({});
 
   const userId = useGetUserId();
@@ -29,14 +29,18 @@ export const Account = () => {
   }, [userId]);
 
   const changePassword = async () => {
+
     try {
-      const response = await axios.post(
+      const response = await axios.put(
         "http://localhost:3001/auth/change-password",
         { userId: userId, oldPassword: oldPassword, newPassword: newPassword },
         { headers: { "Content-Type": "application/json" } }
       );
-      alert(response.data.data);
+      alert(response.data.message);
       setPopupActive(false);
+      setOldPassword("");
+      setNewPassword("");
+      
     } catch (err) {
       console.error(err);
     }
@@ -94,12 +98,16 @@ export const Account = () => {
             </div>
             <div className="content">
               <h3>Change Password</h3>
-
+              <form className="changePasswordForm">
               <input
                 type="password"
                 className="add-task-input"
+                id="oldPassword"
+                name="oldPassword"
+                placeholder="Old Password"
                 value={oldPassword}
                 onChange={(event) => setOldPassword(event.target.value)}
+                autoComplete="on"
               />
 
               <div style={{ padding: "20px" }}></div>
@@ -108,10 +116,14 @@ export const Account = () => {
                 className="add-task-input"
                 id="newPassword"
                 name="newPassword"
+                placeholder="New Password"
                 value={newPassword}
                 onChange={(event) => setNewPassword(event.target.value)}
+                autoComplete="on"
               />
+              </form> 
               <div className="button" onClick={changePassword}>
+              
                 Change
               </div>
             </div>
