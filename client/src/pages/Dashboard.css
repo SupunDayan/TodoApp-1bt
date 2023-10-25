@@ -13,7 +13,7 @@
   }
 
 .Dashboard button {
-	background-color: #D81E5B; 
+	background-color: var(--secondary); 
 	color: white; 
 	padding: 10px 20px; 
 	border: none; 
@@ -21,22 +21,22 @@
 	font-size: 16px;
 	cursor: pointer; 
 	margin-right: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
   }
   
  
   .Dashboard button:hover {
-	background-color: #8A4EFC; 
+	background-color: var(--primary); 
   }
-  
+
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-
 	font-family: "Fira Sans", sans-serif;
 }
+
 
 body {
 	background-color: var(--dark-alt);
@@ -74,7 +74,10 @@ h4 {
 
 .task-highlighted {
 	position: relative;
-	background-color: var(--secondary);
+	border-style: solid;
+	border-color: var(--secondary);
+	border-width: 0.1rem;
+	background-color: var(--dark);
 	padding: 16px;
 	border-radius: 16px;
 	display: flex;
@@ -95,7 +98,7 @@ h4 {
 	opacity: 0.8;
 }
 
-.task .checkbox, .task-highlighted .checkbox {
+/* .task .checkbox, .task-highlighted .checkbox {
 	width: 20px;
 	height: 20px;
 	margin-right: 16px;
@@ -103,34 +106,34 @@ h4 {
 	background-color: var(--dark-alt);
 	background-image: linear-gradient(to bottom, transparent, transparent);
 	transition: 0.4s;
-}
+} */
 
-.task.is-complete .checkbox, .task-highlighted.is-complete .checkbox {
+/* .task.is-complete .checkbox, .task-highlighted.is-complete .checkbox {
 	background-color: var(--primary);
 	background-image: linear-gradient(to bottom, var(--primary), var(--secondary));
-}
+} */
 
-.task .task, .task-highlighted .task {
+.task .text, .task-highlighted .text {
 	font-size: 20px;
+	padding-right: 0.5rem;
 }
 
-.task.is-complete .text , .task-highlighted.is-complete .text{
+/* .task.is-complete .text , .task-highlighted.is-complete .text{
 	text-decoration: line-through;
-}
+} */
 
 .task .delete-task, .task-highlighted .delete-task {
 	color: var(--light);
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background-color: #AF1E2D;
+	background-color: var(--primary);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-weight: 700;
 	cursor: pointer;
 }
-
 
 
 .task .update-task, .task-highlighted .update-task {
@@ -138,7 +141,7 @@ h4 {
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background-color:forestgreen;
+	background-color:var(--secondary);
 	margin-right: 32px;
 	display: flex;
 	align-items: center;
@@ -146,6 +149,42 @@ h4 {
 	font-weight: 700;
 	cursor: pointer;
 }
+
+.date-time-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 10px;
+	justify-content: space-between;
+}
+
+.date-time-container .text{
+	font-size: 15px;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 33.33% 33.33% 33.33%;
+}	
+
+@media (min-width: 768px) {
+	.grid-container {
+		grid-template-columns: 65% 17.5% 17.5%;
+	}
+}
+	
+@media (min-width: 1024px) {
+	.grid-container {
+		grid-template-columns: 70% 15% 15%;
+	}
+}
+
+@media (min-width: 1440px) {
+	.grid-container {
+		grid-template-columns: 80% 10% 10%;
+	}
+}
+
 
 .controls {
 	position: absolute;
@@ -158,7 +197,7 @@ h4 {
 
 .addPopup {
 	position: fixed;
-	bottom: 32px;
+	top: 120px;
 	right: 32px;
 	display: flex;
 	align-items: center;

@@ -113,7 +113,7 @@ export const Login = () => {
           </button>
 
           <span className="login-screen__subtext">
-            Don't have an account?{" "}
+            Don't have an account?
             <Link className="link" to="/register">
               Register
             </Link>

@@ -143,8 +143,8 @@ export const Register = () => {
           </button>
 
           <span className="register-screen__subtext">
-            Already have an account?{" "}
-            <Link to="/login" className="linkSub">
+            Already have an account?
+            <Link to="/login" className="link">
               Login
             </Link>
           </span>

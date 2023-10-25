@@ -8,7 +8,7 @@ export const Navbar = () => {
     window.localStorage.removeItem("authToken");
     window.localStorage.removeItem("userId");
     window.localStorage.removeItem("userName");
-    navigate("/");
+    navigate("/login");
   };
   return (
     <div className="navbar">

@@ -8,7 +8,7 @@
 }
 
 .addPopupAccount button {
-	background-color: #D81E5B; 
+	background-color: var(--secondary); 
 	color: white; 
 	padding: 10px 20px; 
 	border: none; 
@@ -21,7 +21,7 @@
   
  
   .addPopupAccount button:hover {
-	background-color: #8A4EFC; 
+	background-color: var(--primary); 
   }
 
 * {
@@ -55,10 +55,12 @@ h4 {
 	margin-bottom: 16px;
 }
 
-.task {
+.field {
 	position: relative;
 	background-color: var(--dark);
-	padding: 16px;
+	padding-top: 38px;
+	padding-bottom: 38px;
+	padding-left: 16px;
 	border-radius: 16px;
 	display: flex;
 	align-items: center;
@@ -73,10 +75,34 @@ h4 {
 	cursor: pointer;
 }
 
-.task:hover {
+.field:hover {
 	opacity: 0.8;
 }
 
+.field .text{
+	font-size: 20px;
+}
+
+.field-grid-container {
+	display: grid;
+	column-gap: 0px;
+	grid-template-columns: 40% 60%;
+}	
+
+@media (min-width: 768px) {
+	.field-grid-container {
+		column-gap: 50px;
+		grid-template-columns: 15% 85%;
+	}
+}
+	
+ @media (min-width: 1024px) {
+	.field-grid-container {
+		column-gap: 40px;
+		grid-template-columns: 10% 90%;
+	}
+
+}
 
 
 .addPopupAccount {
@@ -130,7 +156,7 @@ h4 {
 	text-transform: uppercase;
 }
 
-.add-task-input {
+.add-password-input {
 	appearance: none;
 	outline: none;
 	border: none;
@@ -154,3 +180,9 @@ h4 {
 	text-align: center;
 	cursor: pointer;
 }
+
+.Account, .navbar{
+	overflow: hidden;
+	white-space: wrap;
+	word-break: break-word;
+  }

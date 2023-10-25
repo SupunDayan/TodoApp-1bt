@@ -59,28 +59,28 @@ export const Account = () => {
         <h1>Welcome, {userName}</h1>
         <h4>Your Details</h4>
 
-        <div className="tasks">
-          <div className="task">
+        <div className="fields">
+          <div className="field field-grid-container">
             <div className="box">
-              <div id="task" className="task">
+              <div id="text" className="text">
                 Username
               </div>
             </div>
             <div className="box">
-              <div id="task" className="task">
+              <div id="text" className="text">
                 {user.username}
               </div>
             </div>
           </div>
 
-          <div className="task">
+          <div className="field field-grid-container">
             <div className="box">
-              <div id="task" className="task">
+              <div id="text" className="text">
                 Email
               </div>
             </div>
             <div className="box">
-              <div id="task" className="task">
+              <div id="text" className="text">
                 {user.email}
               </div>
             </div>
@@ -101,7 +101,7 @@ export const Account = () => {
               <form className="changePasswordForm">
               <input
                 type="password"
-                className="add-task-input"
+                className="add-password-input"
                 id="oldPassword"
                 name="oldPassword"
                 placeholder="Old Password"
@@ -113,7 +113,7 @@ export const Account = () => {
               <div style={{ padding: "20px" }}></div>
               <input
                 type="password"
-                className="add-task-input"
+                className="add-password-input"
                 id="newPassword"
                 name="newPassword"
                 placeholder="New Password"

@@ -136,7 +136,7 @@ export const Dashboard = () => {
           Sort
         </button>
         <button onClick={highlightTodayTasksHandler}>
-          {highlightTodayTasks ? "Show All Tasks" : "Show Today's Tasks"}
+          {highlightTodayTasks ? "All Tasks" : "Today's Tasks"}
         </button>
       </div>
       <div className="tasks">
@@ -151,13 +151,13 @@ export const Dashboard = () => {
                 key={task._id}
               >
                 <div className="box">
-                  <div id="task" className="task">
+                  <div id="task" className="text">
                     {task.task}
                   </div>
-                  <div id="task" className="task">
+                  <div id="task" className="text">
                     {new Date(task.dueDateTime).toLocaleDateString()}
                   </div>
-                  <div id="task" className="task">
+                  <div id="task" className="text">
                     {new Date(task.dueDateTime).toLocaleTimeString()}
                   </div>
                 </div>
@@ -181,23 +181,26 @@ export const Dashboard = () => {
               <div
                 className={
                   highlightTodayTasks && task.isToday
-                    ? "task-highlighted"
-                    : "task"
+                    ? "task-highlighted grid-container"
+                    : "task grid-container"
                 }
                 key={task._id}
               >
-                <div className="box">
-                  <div id="task" className="task">
+                <div className="box grid-item">
+                  <div id="task" className="text">
                     {task.task}
                   </div>
-                  <div id="task" className="task">
+                </div>
+                <div className="date-time-container  grid-item">
+                  <div id="task" className="text">
                     {new Date(task.dueDateTime).toLocaleDateString()}
                   </div>
-                  <div id="task" className="task">
+                  <div id="task" className="text">
                     {new Date(task.dueDateTime).toLocaleTimeString()}
                   </div>
                 </div>
-                <div className="controls">
+                
+                <div className="controls  grid-item">
                   <div
                     className="update-task"
                     onClick={() => updateMode(task._id, task.task)}
