@@ -38,7 +38,7 @@ export const Dashboard = () => {
     const getAllTasksByUserId = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/task/getAll/${userId}`,
+          "http://localhost:3001/task/getAll",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("authToken")}`,

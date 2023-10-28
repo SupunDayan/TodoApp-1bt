@@ -34,6 +34,6 @@ export const authorize = async (req, res, next) => {
   } catch (err) {
     return res
       .status(401)
-      .json({ success: false, error: "Not authorized to access this router" });
+      .json({ success: false, error: err });
   }
 };

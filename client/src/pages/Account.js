@@ -18,7 +18,8 @@ export const Account = () => {
     const getUserById = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/auth/get-user/${userId}`
+          "http://localhost:3001/auth/get-user",
+          { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
         );
         setUser(response.data);
       } catch (error) {
@@ -40,7 +41,7 @@ export const Account = () => {
       const response = await axios.put(
         "http://localhost:3001/auth/change-password",
         { userId, oldPassword, newPassword },
-        { headers: { "Content-Type": "application/json" } }
+        { headers: { "Content-Type": "application/json", Authorization : `Bearer ${localStorage.getItem("authToken")}` } }
       );
       alert(response.data.message);
       closePopup();

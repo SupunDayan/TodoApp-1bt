@@ -14,7 +14,7 @@ const sendToken = (user, statusCode, res) => {
 
 export const getUserById = async (req, res, next) => {
   try {
-    const user = await UserModel.findById(req.params.userId).select(
+    const user = await UserModel.findById(req.user._id).select(
       "+password"
     );
 

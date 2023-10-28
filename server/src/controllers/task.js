@@ -3,9 +3,9 @@ import { UserModel } from "../models/User.js";
 
 export const getAllTasksByUserId = async (req, res, next) => {
   try {
-    const user = await UserModel.findById(req.params.userId);
+    // const user = await UserModel.findById(req.params.userId);
     const userTasks = await TaskModel.find({
-      taskOwner: { $in: user._id },
+      taskOwner: { $in: req.user._id },
     });
     res.json(userTasks);
   } catch (error) {
