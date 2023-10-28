@@ -1,3 +1,3 @@
-export const useGetTaskId = ()=> {
-    return window.localStorage.getItem("taskId");
-}
+export const useGetTaskId = () => {
+  return localStorage.getItem("taskId");
+};

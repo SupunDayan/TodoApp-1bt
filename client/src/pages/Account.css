@@ -178,8 +178,7 @@ h4 {
   cursor: pointer;
 }
 
-.Account,
-.navbar {
+.Account {
   overflow: hidden;
   white-space: wrap;
   word-break: break-word;

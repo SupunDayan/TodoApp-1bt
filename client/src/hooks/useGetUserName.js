@@ -1,3 +1,3 @@
-export const useGetUserName = ()=> {
-    return window.localStorage.getItem("userName");
-}
+export const useGetUserName = () => {
+  return localStorage.getItem("userName");
+};

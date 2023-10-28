@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
 
   email: {
     type: String,
-    required: [true, "Please enter an username"],
+    required: [true, "Please enter an email"],
     unique: true,
   },
 
@@ -54,7 +54,6 @@ UserSchema.methods.getResetPasswordToken = function () {
     .digest("hex");
 
   this.resetPasseordExpiration = Date.now() + 10 * (60 * 1000); 
-
   return resetToken;
 };
 

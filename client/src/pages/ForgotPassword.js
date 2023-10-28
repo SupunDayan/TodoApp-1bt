@@ -50,8 +50,11 @@ export const ForgotPassword = () => {
         <h1> Forgot Password </h1>
         <form onSubmit={handleSubmit} autoComplete="off">
           <p className="forgotpassword-screen__subtext">
-            Please enter the email address you register your account with. We
-            will send you reset password confirmation to this email
+            Please enter your registered email address.
+          </p>
+          <p className="forgotpassword-screen__subtext">
+            We will send you a link to reset your password to your registered
+            email address.
           </p>
           <label htmlFor="email">Email</label>
           <input

@@ -5,8 +5,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const ResetPassword = () => {
-
-
   const navigate = useNavigate();
 
   const { resetToken } = useParams();
