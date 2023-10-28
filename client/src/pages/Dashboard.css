@@ -1,203 +1,216 @@
 :root {
-	--primary: #D81E5B;
-	--secondary: #8A4EFC;
-	--light: #EEE;
-	--light-alt: #61759b;
-	--dark: #131A26;
-	--dark-alt: #202B3E;
+  --primary: #d81e5b;
+  --secondary: #8a4efc;
+  --light: #eee;
+  --light-alt: #61759b;
+  --dark: #131a26;
+  --dark-alt: #202b3e;
 }
 
 .Dashboard .button-container {
-	display: flex;
-	justify-content: flex-end;
-  }
+  display: flex;
+  justify-content: flex-end;
+}
 
 .Dashboard button {
-	background-color: #D81E5B; 
-	color: white; 
-	padding: 10px 20px; 
-	border: none; 
-	border-radius: 4px; 
-	font-size: 16px;
-	cursor: pointer; 
-	margin-right: 10px;
-	margin-bottom: 10px;
-  }
-  
- 
-  .Dashboard button:hover {
-	background-color: #8A4EFC; 
-  }
-  
+  background-color: var(--secondary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.Dashboard button:hover {
+  background-color: var(--primary);
+}
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-
-	font-family: "Fira Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fira Sans", sans-serif;
 }
 
 body {
-	background-color: var(--dark-alt);
-	color: var(--light);
+  background-color: var(--dark-alt);
+  color: var(--light);
 }
 
 .Dashboard {
-	padding: 32px;
+  padding: 32px;
 }
 
 h1 {
-	font-size: 40px;
-	font-weight: 700;
-	margin-bottom: 32px;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 32px;
 }
 
 h4 {
-	font-size: 18px;
-	color: var(--light-alt);
-	text-transform: uppercase;
-	font-weight: 400;
-	margin-bottom: 16px;
+  font-size: 18px;
+  color: var(--light-alt);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 16px;
 }
 
 .task {
-	position: relative;
-	background-color: var(--dark);
-	padding: 16px;
-	border-radius: 16px;
-	display: flex;
-	align-items: center;
-	transition: 0.5s;
-	margin-bottom: 16px;
+  position: relative;
+  background-color: var(--dark);
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+  margin-bottom: 16px;
 }
 
-.task-highlighted {
-	position: relative;
-	background-color: var(--secondary);
-	padding: 16px;
-	border-radius: 16px;
-	display: flex;
-	align-items: center;
-	transition: 0.5s;
-	margin-bottom: 16px;
+.highlighted {
+  border-style: solid;
+  border-color: var(--secondary);
+  border-width: 0.1rem;
 }
-
 
 .box {
-	position: relative;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-.task:hover, .task-highlighted:hover {
-	opacity: 0.8;
+.task:hover,
+.task-highlighted:hover {
+  opacity: 0.8;
 }
 
-.task .checkbox, .task-highlighted .checkbox {
-	width: 20px;
-	height: 20px;
-	margin-right: 16px;
-	border-radius: 50%;
-	background-color: var(--dark-alt);
-	background-image: linear-gradient(to bottom, transparent, transparent);
-	transition: 0.4s;
+.task .text,
+.task-highlighted .text {
+  font-size: 20px;
+  padding-right: 0.5rem;
 }
 
-.task.is-complete .checkbox, .task-highlighted.is-complete .checkbox {
-	background-color: var(--primary);
-	background-image: linear-gradient(to bottom, var(--primary), var(--secondary));
+.task .delete-task,
+.task-highlighted .delete-task {
+  color: var(--light);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.task .task, .task-highlighted .task {
-	font-size: 20px;
+.task .update-task,
+.task-highlighted .update-task {
+  color: var(--light);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  margin-right: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.task.is-complete .text , .task-highlighted.is-complete .text{
-	text-decoration: line-through;
+.date-time-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
+  justify-content: space-between;
 }
 
-.task .delete-task, .task-highlighted .delete-task {
-	color: var(--light);
-	width: 24px;
-	height: 24px;
-	border-radius: 50%;
-	background-color: #AF1E2D;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 700;
-	cursor: pointer;
+.date-time-container .text {
+  font-size: 15px;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+}
 
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: 65% 17.5% 17.5%;
+  }
+}
 
-.task .update-task, .task-highlighted .update-task {
-	color: var(--light);
-	width: 24px;
-	height: 24px;
-	border-radius: 50%;
-	background-color:forestgreen;
-	margin-right: 32px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 700;
-	cursor: pointer;
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: 70% 15% 15%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid-container {
+    grid-template-columns: 80% 10% 10%;
+  }
 }
 
 .controls {
-	position: absolute;
-	transform: translateY(-50%);
-	top: 50%;
-	right: 16px;
-	display: flex;
-	align-items: center;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 16px;
+  display: flex;
+  align-items: center;
 }
 
 .addPopup {
-	position: fixed;
-	bottom: 32px;
-	right: 32px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	width: 64px;
-	height: 64px;
-	border-radius: 999px;
-	font-size: 28px;
-	font-weight: 900;
-	color: var(--light);
-	background-color: var(--primary);
-	background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
-	cursor: pointer;
+  position: fixed;
+  top: 120px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--light);
+  background-color: var(--primary);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--primary),
+    var(--secondary)
+  );
+  cursor: pointer;
 }
 
 .popup {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-	width: 100%;
-	max-width: 400px;
-	background-color: var(--light);
-	padding: 32px;
-	border-radius: 16px;
-	box-shadow: 0px 4px 32px var(--dark);
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--light);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 32px var(--dark);
 }
 
 .closePopup {
-	position: absolute;
-	top: 16px;
-	right: 16px;
-	width: 20px;
-	height: 20px;
-	font-size: 20px;
-	color: var(--dark);
-	cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: var(--dark);
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,33 +220,33 @@ h4 {
 }
 
 .popup h3 {
-	color: var(--dark);
-	margin-bottom: 16px;
-	font-weight: 400;
-	text-transform: uppercase;
+  color: var(--dark);
+  margin-bottom: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .add-task-input {
-	appearance: none;
-	outline: none;
-	border: none;
-	background-color: #FFF;
-	padding: 16px;
-	border-radius: 16px;
-	width: 100%;
-	box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.2);
-	font-size: 20px;
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  width: 100%;
+  box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
 }
 
 .button {
-	padding: 16px 32px;
-	border-radius: 999px;
-	background-image: linear-gradient(to right, var(--primary), var(--secondary));
-	display: inline-block;
-	font-weight: 700;
-	text-transform: uppercase;
-	font-size: 18px;
-	margin-top: 16px;
-	text-align: center;
-	cursor: pointer;
+  padding: 16px 32px;
+  border-radius: 999px;
+  background-image: linear-gradient(to right, var(--primary), var(--secondary));
+  display: inline-block;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  margin-top: 16px;
+  text-align: center;
+  cursor: pointer;
 }

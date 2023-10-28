@@ -1,120 +1,143 @@
 :root {
-	--primary: #D81E5B;
-	--secondary: #8A4EFC;
-	--light: #EEE;
-	--light-alt: #61759b;
-	--dark: #131A26;
-	--dark-alt: #202B3E;
+  --primary: #d81e5b;
+  --secondary: #8a4efc;
+  --light: #eee;
+  --light-alt: #61759b;
+  --dark: #131a26;
+  --dark-alt: #202b3e;
 }
 
 .addPopupAccount button {
-	background-color: #D81E5B; 
-	color: white; 
-	padding: 10px 20px; 
-	border: none; 
-	border-radius: 4px; 
-	font-size: 16px;
-	cursor: pointer; 
-	margin-right: 10px;
-	margin-bottom: 10px;
-  }
-  
- 
-  .addPopupAccount button:hover {
-	background-color: #8A4EFC; 
-  }
+  background-color: var(--secondary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.addPopupAccount button:hover {
+  background-color: var(--primary);
+}
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
-	font-family: "Fira Sans", sans-serif;
+  font-family: "Fira Sans", sans-serif;
 }
 
 body {
-	background-color: var(--dark-alt);
-	color: var(--light);
+  background-color: var(--dark-alt);
+  color: var(--light);
 }
 
 .Account {
-	padding: 32px;
+  padding: 32px;
 }
 
 h1 {
-	font-size: 40px;
-	font-weight: 700;
-	margin-bottom: 32px;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 32px;
 }
 
 h4 {
-	font-size: 18px;
-	color: var(--light-alt);
-	text-transform: uppercase;
-	font-weight: 400;
-	margin-bottom: 16px;
+  font-size: 18px;
+  color: var(--light-alt);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 16px;
 }
 
-.task {
-	position: relative;
-	background-color: var(--dark);
-	padding: 16px;
-	border-radius: 16px;
-	display: flex;
-	align-items: center;
-	transition: 0.5s;
-	margin-bottom: 16px;
+.field {
+  position: relative;
+  background-color: var(--dark);
+  padding-top: 38px;
+  padding-bottom: 38px;
+  padding-left: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+  margin-bottom: 16px;
 }
 
 .box {
-	position: relative;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-.task:hover {
-	opacity: 0.8;
+.field:hover {
+  opacity: 0.8;
 }
 
+.field .text {
+  font-size: 20px;
+}
 
+.field-grid-container {
+  display: grid;
+  column-gap: 0px;
+  grid-template-columns: 40% 60%;
+}
+
+@media (min-width: 768px) {
+  .field-grid-container {
+    column-gap: 50px;
+    grid-template-columns: 15% 85%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .field-grid-container {
+    column-gap: 40px;
+    grid-template-columns: 10% 90%;
+  }
+}
 
 .addPopupAccount {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 200px;
-	height: 30px;
-	font-size: 15px;
-	font-weight: 900;
-	color: var(--light);
-	cursor: pointer;
-	margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--light);
+  cursor: pointer;
+  margin-top: 50px;
 }
 
 .popupAccount {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-	width: 100%;
-	max-width: 400px;
-	background-color: var(--light);
-	padding: 32px;
-	border-radius: 16px;
-	box-shadow: 0px 4px 32px var(--dark);
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--light);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 32px var(--dark);
 }
 
 .closePopupAccount {
-	position: absolute;
-	top: 16px;
-	right: 16px;
-	width: 20px;
-	height: 20px;
-	font-size: 20px;
-	color: var(--dark);
-	cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: var(--dark);
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,33 +147,39 @@ h4 {
 }
 
 .popupAccount h3 {
-	color: var(--dark);
-	margin-bottom: 16px;
-	font-weight: 400;
-	text-transform: uppercase;
+  color: var(--dark);
+  margin-bottom: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
-.add-task-input {
-	appearance: none;
-	outline: none;
-	border: none;
-	background-color: #FFF;
-	padding: 16px;
-	border-radius: 16px;
-	width: 100%;
-	box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.2);
-	font-size: 20px;
+.add-password-input {
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  width: 100%;
+  box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
 }
 
 .button {
-	padding: 16px 32px;
-	border-radius: 999px;
-	background-image: linear-gradient(to right, var(--primary), var(--secondary));
-	display: inline-block;
-	font-weight: 700;
-	text-transform: uppercase;
-	font-size: 18px;
-	margin-top: 16px;
-	text-align: center;
-	cursor: pointer;
+  padding: 16px 32px;
+  border-radius: 999px;
+  background-image: linear-gradient(to right, var(--primary), var(--secondary));
+  display: inline-block;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  margin-top: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.Account {
+  overflow: hidden;
+  white-space: wrap;
+  word-break: break-word;
 }

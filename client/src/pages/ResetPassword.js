@@ -1,14 +1,10 @@
 import "../pages/Form.css";
 import { useFormik } from "formik";
 import { resetPasswordFormSchema } from "../schemas/resetPasswordFormSchema";
-// import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
-// import { useState } from "react"
 import axios from "axios";
 
 export const ResetPassword = () => {
-
-
   const navigate = useNavigate();
 
   const { resetToken } = useParams();

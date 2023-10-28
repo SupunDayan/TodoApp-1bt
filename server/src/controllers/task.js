@@ -8,8 +8,8 @@ export const getAllTasksByUserId = async (req, res, next) => {
       taskOwner: { $in: user._id },
     });
     res.json(userTasks);
-  } catch (err) {
-    res.json(err);
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
   }
 };
 
@@ -18,9 +18,9 @@ export const createTask = async (req, res, next) => {
     const task = new TaskModel(req.body);
     await task.save();
     res.json(task);
-  } catch (err) {
-    console.error(err);
-    res.json({ success: false, error: err });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: error.message });
   }
 };
 
@@ -28,8 +28,8 @@ export const deleteTask = async (req, res, next) => {
   try {
     const response = await TaskModel.findByIdAndDelete(req.params.taskId);
     res.json(response);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
   }
 };
 
@@ -40,7 +40,7 @@ export const updateTask = async (req, res, next) => {
     task.dueDateTime = req.body.dueDateTime;
     await task.save();
     res.json(task);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
   }
 };

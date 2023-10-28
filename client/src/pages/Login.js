@@ -18,31 +18,20 @@ export const Login = () => {
   const onSubmit = async (values, actions) => {
     const { email, password } = values;
 
-    const config = {
-      header: {
-        "Content-Type": "application/json",
-      },
-    };
-
     try {
       const { data } = await axios.post(
         "http://localhost:3001/auth/login",
         { email, password },
-        config
+        { header: { "Content-Type": "application/json" } }
       );
 
-      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("authToken", data.authToken);
       localStorage.setItem("userId", data.userId);
-      localStorage.setItem("userName", data.user.username);
+      localStorage.setItem("userName", data.username);
       navigate("/");
     } catch (error) {
       alert(error.response.data.error);
     }
-    console.log("Submitted");
-    console.log(values);
-    console.log(actions);
-    console.log(email);
-    console.log(password);
 
     actions.resetForm();
   };
@@ -113,7 +102,7 @@ export const Login = () => {
           </button>
 
           <span className="login-screen__subtext">
-            Don't have an account?{" "}
+            Don't have an account?
             <Link className="link" to="/register">
               Register
             </Link>

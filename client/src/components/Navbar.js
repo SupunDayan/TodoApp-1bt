@@ -1,14 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
-import "./Navbar.css"
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import { useLogout } from "../hooks/useLogout";
 
 export const Navbar = () => {
-  const navigate = useNavigate();
+  const logout = useLogout();
 
-  const logout = () => {
-    window.localStorage.removeItem("authToken");
-    window.localStorage.removeItem("userId");
-    navigate("/");
-  };
   return (
     <div className="navbar">
       <Link to="/">Dashboard</Link>
