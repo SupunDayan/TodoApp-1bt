@@ -1,6 +1,7 @@
 import { UserModel } from "../models/User.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import crypto from "crypto";
+import { ErrorResponse } from "../utils/errorResponse.js";
 
 const sendToken = (user, statusCode, res) => {
   const authToken = user.getSignedToken();
@@ -19,12 +20,13 @@ export const getUserById = async (req, res, next) => {
     );
 
     if (!user) {
-      return res.status(404).json({ success: false, error: "User not Found!" });
+      return next(new ErrorResponse("User not Found!" , 404));
     }
 
     res.status(200).json(user);
+
   } catch (error) {
-    return res.status(500).json({ success: false, error: error.message });
+    return next(error);
   }
 };
 
@@ -34,50 +36,40 @@ export const register = async (req, res, next) => {
   const userExist = await UserModel.findOne({ email });
 
   if (userExist) {
-    return res
-      .status(400)
-      .json({ success: false, error: "User already exist! Try login" });
+    return next(new ErrorResponse("User already exist! Try login", 400));
   }
 
   try {
     const user = await UserModel.create({ username, email, password });
     sendToken(user, 201, res);
+
   } catch (error) {
-    return res.status(500).json({ success: false, error: error.message });
+    return next(error);
   }
 };
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({
-      success: false,
-      error: "Enter Email and Password!",
-    });
+    return next(new ErrorResponse("Enter Email and Password!", 400));
   }
 
   try {
     const user = await UserModel.findOne({ email }).select("+password");
 
     if (!user) {
-      return res.status(401).json({
-        success: false,
-        error: "Wrong Email and Password! or User doesn't exist!",
-      });
+      return next(new ErrorResponse("Wrong Email and Password! or User doesn't exist!", 401));
     }
 
     const isPasswordMatched = await user.comparePassword(password);
 
     if (!isPasswordMatched) {
-      return res.status(401).json({
-        success: false,
-        error: "Incorrect Password!",
-      });
+      return next(new ErrorResponse("Incorrect Password!", 401));
     }
     sendToken(user, 200, res);
   } catch (error) {
-    return res.status(500).json({ success: false, error: error.message });
+    return next(error);
   }
 };
 
@@ -88,10 +80,7 @@ export const forgotPassword = async (req, res, next) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-      //   return next(new ErrorResponse("No email could not be sent", 404));
-      return res
-        .status(404)
-        .json({ success: false, error: "Email couldn't be sent" });
+        return next(new ErrorResponse("User not Found! Email couldn't be sent", 404));      
     }
 
     const resetToken = user.getResetPasswordToken();
@@ -103,6 +92,7 @@ export const forgotPassword = async (req, res, next) => {
     const message = `
       <h1>Password Reset</h1>
       <p>Please click on the following link to reset your password:</p>
+      <p>The link will be expired in 10 minutes</p>
       <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
     `;
 
@@ -114,22 +104,18 @@ export const forgotPassword = async (req, res, next) => {
       });
 
       res.status(200).json({ success: true, data: "Email Sent" });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
 
       user.resetPasswordToken = undefined;
       user.resetPasseordExpiration = undefined;
 
       await user.save();
 
-      //   return next(new ErrorResponse("Email could not be sent", 500));
-      return res
-        .status(500)
-        .json({ success: false, error: "Email could not be sent" });
+      return next(new ErrorResponse("Email could not be sent", 500));      
     }
   } catch (error) {
-    // next(err);
-    return res.status(500).json({ success: false, error: error.message });
+    return next(error);
   }
 };
 
@@ -146,8 +132,7 @@ export const resetPassword = async (req, res, next) => {
     });
 
     if (!user) {
-      return res.status(400).json({ success: false, error: "Invalid Token" });
-      //   return next(new ErrorResponse("Invalid Token", 400));
+      return next(new ErrorResponse("Invalid Token", 400));
     }
 
     user.password = req.body.password;
@@ -162,8 +147,7 @@ export const resetPassword = async (req, res, next) => {
       token: user.getSignedToken(),
     });
   } catch (error) {
-    // next(err);
-    return res.status(500).json({ success: false, error: error.message });
+    return next(error);
   }
 };
 
@@ -174,19 +158,13 @@ export const changePassword = async (req, res, next) => {
     const user = await UserModel.findOne({ _id: userId }).select("+password");
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ success: false, error: "User does not exist" });
-      //   return next(new ErrorResponse("Invalid Token", 400));
+      return next(new ErrorResponse("User does not exist", 400));
     }
 
     const isPasswordMatched = await user.comparePassword(oldPassword);
 
     if (!isPasswordMatched) {
-      return res.status(401).json({
-        success: false,
-        error: "Enter old password and new password correctly!",
-      });
+      return next(new ErrorResponse("Enter old password and new password correctly!", 401));
     }
 
     user.password = newPassword;
@@ -197,7 +175,6 @@ export const changePassword = async (req, res, next) => {
       message: "Password Changed Successfully!",
     });
   } catch (error) {
-    // next(err);
-    return res.status(500).json({ success: false, error: error.message });
+    return next(error);
   }
 };

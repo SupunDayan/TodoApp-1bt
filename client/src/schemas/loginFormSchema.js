@@ -8,7 +8,7 @@ export const loginFormSchema = yup.object().shape({
 
   password: yup
     .string()
-    .min(5)
-    .matches(passwordRules, { message: "Please create a stronger password" })
+    .min(5, "Invalid")
+    .matches(passwordRules, { message: "Invalid" })
     .required("Required"),
 });

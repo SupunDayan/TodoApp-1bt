@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { UserModel } from "../models/User.js";
+import { ErrorResponse } from "../utils/errorResponse.js";
 
 export const authorize = async (req, res, next) => {
   let token;
@@ -12,9 +13,7 @@ export const authorize = async (req, res, next) => {
   }
 
   if (!token) {
-    return res
-      .status(401)
-      .json({ success: false, error: "Not authorized to access this route" });
+      return next(new ErrorResponse("Not authorized to access this route" , 401));
   }
 
   try {
@@ -23,17 +22,14 @@ export const authorize = async (req, res, next) => {
     const user = await UserModel.findById(decoded.id);
 
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, error: "No user found with this id" });
+        return next(new ErrorResponse("No user found with this id" , 404));
     }
 
     req.user = user;
 
     next();
-  } catch (err) {
-    return res
-      .status(401)
-      .json({ success: false, error: err });
+    
+  } catch (error) {
+    return next(error);
   }
 };

@@ -37,14 +37,11 @@ export const Dashboard = () => {
   useEffect(() => {
     const getAllTasksByUserId = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/task/getAll",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:3001/task/getAll", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        });
         const tasksWithIsToday = response.data.map((task) => ({
           ...task,
           isToday: isDueDateToday(task.dueDateTime),
@@ -76,11 +73,11 @@ export const Dashboard = () => {
     setHighlightTodayTasks(!highlightTodayTasks);
   };
 
-  const addTask = async () => {
+  const createTask = async () => {
     try {
       const response = await axios.post(
         "http://localhost:3001/task/create",
-        { task: task, dueDateTime: dueDateTime, taskOwner: userId },
+        { task, dueDateTime, taskOwner: userId },
         headers
       );
 
@@ -118,11 +115,7 @@ export const Dashboard = () => {
     try {
       const response = await axios.put(
         "http://localhost:3001/task/update",
-        {
-          taskId: taskId,
-          task: task,
-          dueDateTime: dueDateTime,
-        },
+        { taskId, task, dueDateTime },
         headers
       );
 
@@ -237,11 +230,12 @@ export const Dashboard = () => {
                 id="datetimeInput"
                 name="datetimeInput"
                 value={dueDateTime}
+                min={getFormattedDate(new Date())}
                 onChange={(event) => setdueDateTime(event.target.value)}
               />
               <div
                 className="button"
-                onClick={isUpdating ? () => updateTask(taskId) : addTask}
+                onClick={isUpdating ? () => updateTask(taskId) : createTask}
               >
                 {isUpdating ? "Update Task" : "Create Task"}
               </div>
