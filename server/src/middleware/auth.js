@@ -30,6 +30,6 @@ export const authorize = async (req, res, next) => {
     next();
     
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };

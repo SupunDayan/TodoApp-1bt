@@ -10,7 +10,7 @@ export const getAllTasksByUserId = async (req, res, next) => {
     res.json(userTasks);
 
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
 
@@ -25,7 +25,7 @@ export const createTask = async (req, res, next) => {
 
   } catch (error) {
     console.error(error);
-    return next(error);
+    next(error);
   }
 };
 
@@ -36,7 +36,7 @@ export const deleteTask = async (req, res, next) => {
     res.json(deletedTask);
 
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
 
@@ -51,6 +51,6 @@ export const updateTask = async (req, res, next) => {
     res.json(selectedTask);
 
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
