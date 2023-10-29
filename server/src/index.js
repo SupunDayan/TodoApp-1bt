@@ -4,6 +4,7 @@ import cors from "cors";
 import { ConnectDB } from "./config/db.js";
 import { AuthRouter } from "./routes/auth.js";
 import { TaskRouter } from "./routes/task.js";
+import { errorHandler } from "./middleware/error.js";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(cors());
 
 app.use("/auth", AuthRouter);
 app.use("/task", TaskRouter);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

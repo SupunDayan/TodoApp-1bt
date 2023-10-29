@@ -4,7 +4,7 @@ import { authorize } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.route("/getAll/:userId").get(authorize, getAllTasksByUserId);
+router.route("/getAll").get(authorize, getAllTasksByUserId);
 
 router.route("/create").post(authorize, createTask);
 

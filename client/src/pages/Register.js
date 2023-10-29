@@ -13,7 +13,7 @@ export const Register = () => {
     if (localStorage.getItem("authToken")) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const onSubmit = async (values, actions) => {
     const { username, email, password } = values;
