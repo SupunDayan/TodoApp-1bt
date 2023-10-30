@@ -20,7 +20,7 @@ export const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "http://13.215.172.134:3001/auth/login",
+        "http://localhost:3001/auth/login",
         { email, password },
         { header: { "Content-Type": "application/json" } }
       );

@@ -18,7 +18,7 @@ export const Account = () => {
     const getUserById = async () => {
       try {
         const response = await axios.get(
-          "http://13.215.172.134:3001/auth/get-user" ,
+          "http://localhost:3001/auth/get-user" ,
           { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
         );
         setUser(response.data);
@@ -39,7 +39,7 @@ export const Account = () => {
   const changePassword = async () => {
     try {
       const response = await axios.put(
-        "http://13.215.172.134:3001/auth/change-password",
+        "http://localhost:3001/auth/change-password",
         { userId, oldPassword, newPassword },
         { headers: { "Content-Type": "application/json", Authorization : `Bearer ${localStorage.getItem("authToken")}` } }
       );

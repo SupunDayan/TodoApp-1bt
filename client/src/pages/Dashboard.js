@@ -38,7 +38,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const getAllTasksByUserId = async () => {
       try {
-        const response = await axios.get("http://13.215.172.134:3001/task/getAll", {
+        const response = await axios.get("http://localhost:3001/task/getAll", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
@@ -77,7 +77,7 @@ export const Dashboard = () => {
   const createTask = async () => {
     try {
       const response = await axios.post(
-        "http://13.215.172.134:3001/task/create",
+        "http://localhost:3001/task/create",
         { task, dueDateTime, taskOwner: userId },
         headers
       );
@@ -101,7 +101,7 @@ export const Dashboard = () => {
   const deleteTask = async (taskId) => {
     try {
       const response = await axios.delete(
-        `http://13.215.172.134:3001/task/delete/${taskId}`,
+        `http://localhost:3001/task/delete/${taskId}`,
         headers
       );
       setTasks((tasks) =>
@@ -115,7 +115,7 @@ export const Dashboard = () => {
   const updateTask = async (taskId) => {
     try {
       const response = await axios.put(
-        "http://13.215.172.134:3001/task/update",
+        "http://localhost:3001/task/update",
         { taskId, task, dueDateTime },
         headers
       );

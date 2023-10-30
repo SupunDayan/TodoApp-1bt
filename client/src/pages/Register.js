@@ -20,7 +20,7 @@ export const Register = () => {
 
     try {
       const { data } = await axios.post(
-        "http://13.215.172.134:3001/auth/register",
+        "http://localhost:3001/auth/register",
         {
           username,
           email,

@@ -15,7 +15,7 @@ export const ForgotPassword = () => {
 
     try {
       const { data } = await axios.post(
-        "http://13.215.172.134:3001/auth/forgot-password",
+        "http://localhost:3001/auth/forgot-password",
         { email },
         config
       );
