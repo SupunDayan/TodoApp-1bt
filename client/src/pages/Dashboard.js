@@ -5,6 +5,7 @@ import { useGetUserId } from "../hooks/useGetUserId";
 import { useGetUserName } from "../hooks/useGetUserName";
 import { getFormattedDate } from "../utils/getFormattedDate";
 
+
 export const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [popupActive, setPopupActive] = useState(false);
@@ -37,7 +38,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const getAllTasksByUserId = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/task/getAll", {
+        const response = await axios.get("http://13.215.172.134:3001/task/getAll", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
@@ -76,7 +77,7 @@ export const Dashboard = () => {
   const createTask = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/task/create",
+        "http://13.215.172.134:3001/task/create",
         { task, dueDateTime, taskOwner: userId },
         headers
       );
@@ -100,7 +101,7 @@ export const Dashboard = () => {
   const deleteTask = async (taskId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/task/delete/${taskId}`,
+        `http://13.215.172.134:3001/task/delete/${taskId}`,
         headers
       );
       setTasks((tasks) =>
@@ -114,7 +115,7 @@ export const Dashboard = () => {
   const updateTask = async (taskId) => {
     try {
       const response = await axios.put(
-        "http://localhost:3001/task/update",
+        "http://13.215.172.134:3001/task/update",
         { taskId, task, dueDateTime },
         headers
       );

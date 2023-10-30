@@ -20,7 +20,7 @@ export const ResetPassword = () => {
 
     try {
       const { data } = await axios.put(
-        `http://localhost:3001/auth/reset-password/${resetToken}`,
+        `http://13.215.172.134:3001/auth/reset-password/${resetToken}`,
         {
           password,
         },
