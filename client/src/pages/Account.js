@@ -18,7 +18,7 @@ export const Account = () => {
     const getUserById = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/auth/get-user",
+          "http://localhost:3001/auth/get-user" ,
           { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
         );
         setUser(response.data);
